@@ -1,0 +1,57 @@
+extends ./layout
+
+block content
+	header
+		div(class='header-content')
+			div(class='header-content-inner')
+				img(src="img/face-speech.png" class="title-image")
+				h1 音声合成サンプルアプリケーション
+				div(class='spacer-20')
+				p 入力したテキストを読み上げるサンプルアプリケーションです
+				a(href='#js-text-textview' class='btn-skeleton btn-medium page-scroll')試す
+	section(id='main-containts' )
+		div(class='container')				
+			div(class='form' role='form')
+				div(class="form-group" id="js-text-form-group")
+					h5 テキスト               	
+					textarea(id="js-text-textview" class='form-control' rows='5' maxlength='1000' placeholder='テキストを入力してください')
+				div(class="form-group")
+					h5 話者名
+					select(id="js-speaker-selector" class="form-control")
+						- for speaker in speakers
+							option(value="#{speaker.speaker_id}") #{speaker.description} #{speaker.style} (#{speaker.alias})
+					select(id="js-emotion-selector" class="hidden" )
+						- for speaker in speakers
+							option(value="#{speaker.speaker_id}") #{speaker.emotion}
+	
+				div(class="price-form")
+					div(class="form-group")
+					h5 話す早さ
+					div(class="slidbar-box")
+						input(id="js-speeking-rate" type="hidden" class="slider-input" value="0")
+					
+				div(class="form-group")
+					h5 感情
+					select(id="js-emotion"  class="form-control")
+						option(value="default") 標準
+							
+			div(class='box-footer text-center')
+				a(type='button' class='btn btn-primary btn-large' id="js-speech-button") Speech
+			div(class='spacer-200')
+					
+	script.
+		$('#js-speeking-rate').jRange({
+			from: -10.0,
+			to: 10.0,
+			step: 1.0,
+			scale: [-10,-5,0,5,10],
+			format: '%s',
+			width: 270,
+			theme: 'theme-blue',
+			showLabels: true,
+			snap: true
+		});
+						
+						
+
+			
