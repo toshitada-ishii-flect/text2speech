@@ -48,19 +48,19 @@ function setEmotionList() {
 	var emotionList = $('#js-emotion-selector option:selected').text();
 	emotion.children().remove();
 	emotion.append($('<option>').html("標準").val("default"));
-	if (emotionList.indexOf('happy') > 0) {
+	if (emotionList.indexOf('happy') != -1) {
 		emotion.append($('<option>').html("喜び").val("happy"));
 	}
-	if (emotionList.indexOf('angry') > 0) {
+	if (emotionList.indexOf('angry') != -1) {
 		emotion.append($('<option>').html("怒り").val("angry"));
 	}
-	if (emotionList.indexOf('sad') > 0) {
+	if (emotionList.indexOf('sad') != -1) {
 		emotion.append($('<option>').html("悲しみ").val("sad"));
 	}
-	if (emotionList.indexOf('fear') > 0) {
+	if (emotionList.indexOf('fear') != -1) {
 		emotion.append($('<option>').html("怖れ").val("fear"));
 	}
-	if (emotionList.indexOf('tender') > 0) {
+	if (emotionList.indexOf('tender') != -1) {
 		emotion.append($('<option>').html("優しさ").val("tender"));
 	}
 }
@@ -80,13 +80,14 @@ function playOnTheAudio() {
 		speechRequest.text = textTextView.val();
 		speechRequest.speaker_id = speakerSelector.val();
 		speechRequest.speeking_rate = speekingRate.val();
+        speechRequest.emotion = emotion.val();
 
 		if (audioElement.paused || audioElement.ended) {
 			var isValid = validateForm();
 			
 			//audioのソースに音声合成APIのラッピングAPIを指定
 			if (isValid) {
-				var apiRequest = '/api/speechSystem?speaker_id=' + speechRequest.speaker_id + '&text=' + encodeURIComponent(speechRequest.text) + '&speeking_rate=' + speechRequest.speeking_rate;
+				var apiRequest = '/api/speechSystem?speaker_id=' + speechRequest.speaker_id + '&text=' + encodeURIComponent(speechRequest.text) + '&speeking_rate=' + speechRequest.speeking_rate + '&emotion=' + speechRequest.emotion;
 				audioElement.src = apiRequest;
 				audioElement.play();
 				showStopButton();
