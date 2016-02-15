@@ -4,6 +4,12 @@
   "env": {
     "NODE_ENV": {
       "value": "development"
+    },
+    "RECAIUS_ID": {
+      "value": ""
+    },
+    "RECAIUS_PASSWORD": {
+      "value": ""
     }
   }
 }

@@ -54,6 +54,10 @@ RECAIUS Developerサイトから送られてくるログイン情報(ディベ�
     }
 ```
 
+Herokuを利用する場合は下記のボタンをクリックし、RECAIUS_IDとRECAIUS_PASSWORDを設定すれば簡単にアプリケーションがデプロイできます。
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Licence
 * MIT
     * This software is released under the MIT License, see LICENSE.txt.
